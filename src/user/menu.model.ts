@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 
 export class Menu {
-   _id: String;
-   name: String;
-   description: String;
-   path: String;
-   image: String;
+   _id: string;
+   name: string;
+   description: string;
+   path: string;
+   image: string;
 }
 
