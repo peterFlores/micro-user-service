@@ -3,9 +3,7 @@ import { Document } from 'mongoose';
 import { Menu } from './menu.model';
 
 export type UserDocument = User & Document;
-@Schema({
-     // timestamp: true
-})
+@Schema()
 export class User {
    
     @Prop()
@@ -34,9 +32,6 @@ export class User {
 
     @Prop()
     menu: Menu[];
-
-
-    // More props here
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
