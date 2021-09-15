@@ -2,6 +2,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Req} from '@nestjs/common';
 import { User } from "./user.model";
 import { UserService } from "./user.service";
+import { Menu } from "./menu.model";
 
 @Controller('/user')
 export class UserController {
@@ -23,8 +24,8 @@ export class UserController {
     }
 
     @Post()
-    async create(@Body() model:User){
-        return await this.service.create(model);
+    async create(@Body() Usermodel:User){
+        return await this.service.create(Usermodel);
     }
 
     @Post('/validate')
