@@ -23,14 +23,9 @@ export class UserService {
         const newMenu = await this.menuModel.find().exec();
         users.forEach( async userall => {
             const userMenu = Object.values(await (await this.userModel.findById(userall['_id'])).menu);
-            console.log(userMenu);
             userMenu.forEach(  register => { newMenu.forEach(menus => {
-                if(register['_id'] == menus.get('_id')){if(register['status'] != menus.get('status')){
-                        if(menus.get('status')==true){register['status'] == true;
-                            this.userModel.findByIdAndUpdate({ '_id': userall['_id'], 'menu._id': register['_id']},{$set: {'menu.$[].status': true}}).exec(); 
-                        }else{register['status'] == false;
-                            this.userModel.findByIdAndUpdate({ '_id': userall['_id'], 'menu._id': register['_id']},{$set: {'menu.$[].status': false}}).exec();}}}});});
-        });
+                if(register['_id'] == menus.get('_id')){
+                    this.userModel.updateMany({'_id': userall['_id'], 'menu._id': register['_id']}, {$set: {'menu.$.name': menus.get('name'),'menu.$.description': menus.get('description'),'menu.$.path': menus.get('path'), 'menu.$.image': menus.get('image'), 'menu.$.status': menus.get('status')}}).exec();}});});});
         return await this.userModel.find().exec();
     }
 
@@ -38,13 +33,8 @@ export class UserService {
         const newMenu = await this.menuModel.find().exec();
         const userMenu = Object.values(await (await this.userModel.findById(id)).menu);
         userMenu.forEach(  register => { newMenu.forEach(menus => {
-                if(register['_id'] == menus.get('_id')){if(register['status'] != menus.get('status')){
-                        if(menus.get('status')==true){
-                            //register['status'] == true;
-                        console.log('here');
-                            this.userModel.findByIdAndUpdate({ '_id': id, 'menu._id': register['_id']},{$set: {'menu.$[].status': true}}).exec(); 
-                        }else{register['status'] == false;
-                            this.userModel.findByIdAndUpdate({ '_id': id, 'menu._id': register['_id']},{$set: {'menu.$[].status': false}}).exec();}}}});});
+                if(register['_id'] == menus.get('_id')){
+                            this.userModel.updateMany({'_id': id, 'menu._id': register['_id']}, {$set: {'menu.$.name': menus.get('name'),'menu.$.description': menus.get('description'),'menu.$.path': menus.get('path'), 'menu.$.image': menus.get('image'), 'menu.$.status': menus.get('status')}}).exec();}});});
         return await this.userModel.findById(id).exec();
     }
 
