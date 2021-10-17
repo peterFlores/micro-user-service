@@ -17,15 +17,3 @@ export class Menu {
 }
 
 export const MenuSchema = SchemaFactory.createForClass(Menu);
-
-/*var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
-var MenuSchema = new Schema({
-    name: { type: String},
-    descrption: { type: String},
-    path: { type: String},
-    image: { type: String},
- });
-
- exports = mongoose.Model("Menu", MenuSchema);*/
