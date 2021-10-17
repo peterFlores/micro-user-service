@@ -53,15 +53,15 @@ export class UserService {
         return await this.userModel.findOne({filter}).exec();
     }
 
-    async create(user: User): Promise<User>{
+    async create(user: User): Promise<User> {
         const hash = await bcrypt.hash(user.password, 10);
         return await new this.userModel({...user, password: hash}).save();
     }
 
-    async validatePassword(email: string, password: string): Promise<Boolean>{
+    async validatePassword(email: string, password: string): Promise<boolean> {
         const filter = { email: email};
         const user: User = await this.userModel.findOne(filter).exec();
-        Logger
+        Logger.log(password);
         return await bcrypt.compareSync(password, user.password)
     }
 

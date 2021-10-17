@@ -18,7 +18,7 @@ export class UserController {
         return await this.service.findOne(id);
     }
 
-    @Get(':email')
+    @Get('/email/:email')
     async findByEmail(@Param('email') email: string){
         return await this.service.findByEmail(email);
     }
@@ -30,7 +30,7 @@ export class UserController {
 
     @Post('/validate')
     async validatePassword(@Body() request: any){
-        return await this.service.validatePassword(request.email, request.password);
+        return await this.service.validatePassword(request.email, request.pass);
     }
 
     @Put(':id')
