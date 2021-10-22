@@ -24,8 +24,8 @@ export class UserController {
     }
 
     @Post()
-    async create(@Body() Usermodel:User){
-        return await this.service.create(Usermodel);
+    async create(@Body() usermodel:any){
+        return await this.service.create(usermodel);
     }
 
     @Post('/validate')

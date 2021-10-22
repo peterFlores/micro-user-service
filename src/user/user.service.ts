@@ -40,10 +40,11 @@ export class UserService {
 
     async findByEmail(email: string): Promise<User>{
         const filter = { email: email };
-        return await this.userModel.findOne({filter}).exec();
+        return await this.userModel.findOne(filter).exec();
     }
 
     async create(user: User): Promise<User> {
+        console.log(user);
         const hash = await bcrypt.hash(user.password, 10);
         return await new this.userModel({...user, password: hash}).save();
     }
